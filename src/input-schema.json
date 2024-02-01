@@ -1,0 +1,1478 @@
+{
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "definitions": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "i-text",
+        "for"
+      ]
+    },
+    "items": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/i-text"
+        },
+        {
+          "$ref": "#/definitions/for"
+        },
+        {
+          "$ref": "#/definitions/i-number"
+        },
+        {
+          "$ref": "#/definitions/i-switch"
+        },
+        {
+          "$ref": "#/definitions/i-select"
+        },
+        {
+          "$ref": "#/definitions/i-dropdown"
+        },
+        {
+          "$ref": "#/definitions/i-multi-select"
+        },
+        {
+          "$ref": "#/definitions/i-date"
+        },
+        {
+          "$ref": "#/definitions/i-time"
+        },
+        {
+          "$ref": "#/definitions/i-datetime"
+        },
+        {
+          "$ref": "#/definitions/i-location"
+        },
+        {
+          "$ref": "#/definitions/i-file"
+        },
+        {
+          "$ref": "#/definitions/i-image"
+        },
+        {
+          "$ref": "#/definitions/i-video"
+        },
+        {
+          "$ref": "#/definitions/i-audio"
+        },
+        {
+          "$ref": "#/definitions/i-agree"
+        },
+        {
+          "$ref": "#/definitions/o-text"
+        },
+        {
+          "$ref": "#/definitions/o-rich"
+        },
+        {
+          "$ref": "#/definitions/o-image"
+        },
+        {
+          "$ref": "#/definitions/o-video"
+        },
+        {
+          "$ref": "#/definitions/o-audio"
+        },
+        {
+          "$ref": "#/definitions/o-location"
+        },
+        {
+          "$ref": "#/definitions/o-box"
+        },
+        {
+          "$ref": "#/definitions/o-table"
+        },
+        {
+          "$ref": "#/definitions/o-pie-chart"
+        },
+        {
+          "$ref": "#/definitions/o-line-chart"
+        },
+        {
+          "$ref": "#/definitions/o-success"
+        }
+      ],
+      "additionalProperties": false
+    },
+    "inputName": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_]+$"
+    },
+    "inputLabel": {
+      "type": "string"
+    },
+    "_min_l": {
+      "const": 1
+    },
+    "inputPlaceholder": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "inputMinLength": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1024
+    },
+    "inputMaxLength": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1024
+    },
+    "inputPattern": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "inputRequired": {
+      "type": "boolean"
+    },
+    "inputDisabled": {
+      "type": "boolean"
+    },
+    "inputOptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "src": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "canBeParameter": true
+    },
+    "inputAccept": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1024,
+        "pattern": "^[a-zA-Z0-9_\\-/*.+()]+$",
+        "canBeParameter": true
+      }
+    },
+    "i-text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-text"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "placeholder": {
+          "$ref": "#/definitions/inputPlaceholder"
+        },
+        "description": {
+          "type": "string"
+        },
+        "minLength": {
+          "$ref": "#/definitions/inputMinLength"
+        },
+        "maxLength": {
+          "$ref": "#/definitions/inputMaxLength"
+        },
+        "pattern": {
+          "$ref": "#/definitions/inputPattern"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string"
+        }
+      }
+    },
+    "i-number": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-number"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "placeholder": {
+          "$ref": "#/definitions/inputPlaceholder"
+        },
+        "description": {
+          "type": "string"
+        },
+        "min": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max": {
+          "type": "number",
+          "minimum": 0
+        },
+        "multipleOf": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "number"
+        }
+      }
+    },
+    "i-switch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-switch"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "i-select": {
+      "type": "object",
+      "description": "i-select used for single selection. For multiple selection, use i-multi-select",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label",
+        "options"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-select"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "use_chips": {
+          "type": "boolean"
+        },
+        "use_search": {
+          "type": "boolean"
+        },
+        "icons": {
+          "type": "string",
+          "enum": [
+            "radio",
+            "checkbox",
+            "none"
+          ],
+          "default": "radio"
+        },
+        "grid": {
+          "type": "number",
+          "multipleOf": 1,
+          "minimum": 1,
+          "maximum": 4
+        },
+        "options": {
+          "$ref": "#/definitions/inputOptions"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string"
+        }
+      }
+    },
+    "i-dropdown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label",
+        "options"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-dropdown"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/definitions/inputOptions"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string"
+        }
+      }
+    },
+    "i-multi-select": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label",
+        "options"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-multi-select"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "use_chips": {
+          "type": "boolean"
+        },
+        "use_search": {
+          "type": "boolean"
+        },
+        "icons": {
+          "type": "string",
+          "enum": [
+            "radio",
+            "checkbox",
+            "none"
+          ],
+          "default": "checkbox"
+        },
+        "grid": {
+          "type": "number",
+          "multipleOf": 1,
+          "minimum": 1,
+          "maximum": 4
+        },
+        "options": {
+          "$ref": "#/definitions/inputOptions"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "i-date": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-date"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string",
+          "format": "date"
+        },
+        "min": {
+          "type": "string",
+          "format": "date"
+        },
+        "max": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "i-time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-time"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string",
+          "format": "time"
+        },
+        "min": {
+          "type": "string",
+          "format": "time"
+        },
+        "max": {
+          "type": "string",
+          "format": "time"
+        }
+      }
+    },
+    "i-datetime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-datetime"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "min": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "max": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "i-location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-location"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "i-file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-file"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "accept": {
+          "$ref": "#/definitions/inputAccept"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "minSize": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxSize": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "i-image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-image"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "accept": {
+          "$ref": "#/definitions/inputAccept"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        }
+      }
+    },
+    "i-video": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-video"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "accept": {
+          "$ref": "#/definitions/inputAccept"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        }
+      }
+    },
+    "i-audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-audio"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "accept": {
+          "$ref": "#/definitions/inputAccept"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        }
+      }
+    },
+    "i-agree": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-agree"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        }
+      }
+    },
+    "o-text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "const": "o-text"
+        },
+        "text": {
+          "type": "string"
+        },
+        "style": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "h1",
+              "h2",
+              "h3",
+              "h4",
+              "h5",
+              "h6",
+              "subtitle1",
+              "subtitle2",
+              "body1",
+              "body2",
+              "button",
+              "caption",
+              "overline"
+            ]
+          }
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ]
+        },
+        "color": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "secondary",
+            "textPrimary",
+            "textSecondary",
+            "error"
+          ]
+        },
+        "gutterBottom": {
+          "type": "boolean"
+        },
+        "noWrap": {
+          "type": "boolean"
+        },
+        "paragraph": {
+          "type": "boolean"
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "subtitle1",
+            "subtitle2",
+            "body1",
+            "body2",
+            "button",
+            "caption",
+            "overline"
+          ]
+        },
+        "display": {
+          "type": "string",
+          "enum": [
+            "initial",
+            "block",
+            "inline"
+          ]
+        }
+      }
+    },
+    "o-rich": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "text"
+      ],
+      "properties": {
+        "texts": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "color": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "textPrimary",
+                  "textSecondary",
+                  "error"
+                ]
+              },
+              "variant": {
+                "type": "string",
+                "enum": [
+                  "h1",
+                  "h2",
+                  "h3",
+                  "h4",
+                  "h5",
+                  "h6",
+                  "subtitle1",
+                  "subtitle2",
+                  "body1",
+                  "body2",
+                  "button",
+                  "caption",
+                  "overline"
+                ]
+              },
+              "display": {
+                "type": "string",
+                "enum": [
+                  "initial",
+                  "block",
+                  "inline"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "o-image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "src"
+      ],
+      "properties": {
+        "type": {
+          "const": "o-image"
+        },
+        "src": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        },
+        "width": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "fit": {
+          "type": "string",
+          "enum": [
+            "contain",
+            "cover",
+            "fill",
+            "none",
+            "scale-down"
+          ]
+        },
+        "position": {
+          "type": "string",
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ]
+        },
+        "repeat": {
+          "type": "string",
+          "enum": [
+            "repeat",
+            "repeat-x",
+            "repeat-y",
+            "no-repeat",
+            "space",
+            "round"
+          ]
+        },
+        "lazy": {
+          "type": "boolean"
+        }
+      }
+    },
+    "o-video": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "src"
+      ],
+      "properties": {
+        "type": {
+          "const": "o-video"
+        },
+        "src": {
+          "type": "string"
+        },
+        "width": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "poster": {
+          "type": "string"
+        },
+        "controls": {
+          "type": "boolean"
+        },
+        "autoplay": {
+          "type": "boolean"
+        },
+        "muted": {
+          "type": "boolean"
+        },
+        "loop": {
+          "type": "boolean"
+        },
+        "lazy": {
+          "type": "boolean"
+        }
+      }
+    },
+    "o-audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "src"
+      ],
+      "properties": {
+        "type": {
+          "const": "o-audio"
+        },
+        "src": {
+          "type": "string"
+        },
+        "controls": {
+          "type": "boolean"
+        },
+        "autoplay": {
+          "type": "boolean"
+        },
+        "muted": {
+          "type": "boolean"
+        },
+        "loop": {
+          "type": "boolean"
+        },
+        "lazy": {
+          "type": "boolean"
+        }
+      }
+    },
+    "o-location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "lat",
+        "lng"
+      ],
+      "properties": {
+        "type": {
+          "const": "o-location"
+        },
+        "lat": {
+          "type": "number"
+        },
+        "lng": {
+          "type": "number"
+        },
+        "zoom": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number"
+        },
+        "mapType": {
+          "type": "string",
+          "enum": [
+            "roadmap",
+            "satellite",
+            "hybrid",
+            "terrain"
+          ]
+        },
+        "markers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number"
+              },
+              "lng": {
+                "type": "number"
+              },
+              "label": {
+                "type": "string"
+              },
+              "info": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "o-box": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "const": "o-info-box"
+        },
+        "boxType": {
+          "type": "string",
+          "enum": [
+            "info",
+            "success",
+            "warning",
+            "error"
+          ],
+          "default": "info"
+        },
+        "text": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "subtext": {
+          "type": "string"
+        },
+        "head": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "secondary",
+            "textPrimary",
+            "textSecondary",
+            "error"
+          ]
+        }
+      }
+    },
+    "o-table": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "columns",
+        "rows"
+      ],
+      "properties": {
+        "type": {
+          "const": "o-table"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "align": {
+                "type": "string",
+                "enum": [
+                  "left",
+                  "center",
+                  "right"
+                ]
+              },
+              "sortable": {
+                "type": "boolean"
+              },
+              "filterable": {
+                "type": "boolean"
+              },
+              "divider": {
+                "type": "boolean"
+              },
+              "width": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "align": {
+                "type": "string",
+                "enum": [
+                  "left",
+                  "center",
+                  "right"
+                ]
+              },
+              "sortable": {
+                "type": "boolean"
+              },
+              "filterable": {
+                "type": "boolean"
+              },
+              "divider": {
+                "type": "boolean"
+              },
+              "width": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "rowsPerPage": {
+          "type": "number"
+        },
+        "page": {
+          "type": "number"
+        },
+        "sortBy": {
+          "type": "string"
+        },
+        "sortDesc": {
+          "type": "boolean"
+        },
+        "filterBy": {
+          "type": "string"
+        }
+      },
+      "o-list": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "items"
+        ],
+        "properties": {
+          "type": {
+            "const": "o-list"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "sortable": {
+                  "type": "boolean"
+                },
+                "filterable": {
+                  "type": "boolean"
+                },
+                "divider": {
+                  "type": "boolean"
+                },
+                "width": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      },
+      "o-pie-chart": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "items"
+        ],
+        "properties": {
+          "type": {
+            "const": "o-pie-chart"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "sortable": {
+                  "type": "boolean"
+                },
+                "filterable": {
+                  "type": "boolean"
+                },
+                "divider": {
+                  "type": "boolean"
+                },
+                "width": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "o-pie-chart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "pie-items"
+      ],
+      "properties": {
+        "type": {
+          "const": "o-pie-chart"
+        },
+        "pie-items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "value": {
+                "type": "number"
+              },
+              "color": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "o-line-chart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "o-line-chart"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "align": {
+                "type": "string",
+                "enum": [
+                  "left",
+                  "center",
+                  "right"
+                ]
+              },
+              "sortable": {
+                "type": "boolean"
+              },
+              "filterable": {
+                "type": "boolean"
+              },
+              "divider": {
+                "type": "boolean"
+              },
+              "width": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "o-success": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "const": "o-success"
+        },
+        "text": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "subtext": {
+          "type": "string"
+        },
+        "head": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "secondary",
+            "textPrimary",
+            "textSecondary",
+            "error"
+          ]
+        }
+      }
+    },
+    "for": {
+      "type": "object",
+      "required": [
+        "type",
+        "items",
+        "as"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "for"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "array": {
+          "type": "array",
+          "items": {},
+          "canBeParameter": true
+        },
+        "as": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/items"
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/items"
+      }
+    }
+  }
+}

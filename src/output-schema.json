@@ -1,0 +1,725 @@
+{
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "definitions": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "i-text",
+        "for"
+      ]
+    },
+    "items": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/i-text"
+        },
+        {
+          "$ref": "#/definitions/for"
+        },
+        {
+          "$ref": "#/definitions/i-number"
+        }
+      ],
+      "additionalProperties": false
+    },
+    "inputName": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_]+$"
+    },
+    "inputLabel": {
+      "type": "string"
+    },
+    "inputPlaceholder": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "inputMinLength": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1024
+    },
+    "inputMaxLength": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1024
+    },
+    "inputPattern": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "inputRequired": {
+      "type": "boolean"
+    },
+    "inputDisabled": {
+      "type": "boolean"
+    },
+    "inputOptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "src": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "canBeParameter": true
+    },
+    "inputAccept": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1024,
+        "pattern": "^[a-zA-Z0-9_\\-/*.+()]+$",
+        "canBeParameter": true
+      }
+    },
+    "i-text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-text"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "placeholder": {
+          "$ref": "#/definitions/inputPlaceholder"
+        },
+        "description": {
+          "type": "string"
+        },
+        "minLength": {
+          "$ref": "#/definitions/inputMinLength"
+        },
+        "maxLength": {
+          "$ref": "#/definitions/inputMaxLength"
+        },
+        "pattern": {
+          "$ref": "#/definitions/inputPattern"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string"
+        }
+      }
+    },
+    "i-number": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-number"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "placeholder": {
+          "$ref": "#/definitions/inputPlaceholder"
+        },
+        "description": {
+          "type": "string"
+        },
+        "min": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max": {
+          "type": "number",
+          "minimum": 0
+        },
+        "multipleOf": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "number"
+        }
+      }
+    },
+    "i-switch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-switch"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "i-select": {
+      "type": "object",
+      "description": "i-select used for single selection. For multiple selection, use i-multi-select",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label",
+        "options"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-select"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "use_chips": {
+          "type": "boolean"
+        },
+        "use_search": {
+          "type": "boolean"
+        },
+        "icons": {
+          "type": "string",
+          "enum": [
+            "radio",
+            "checkbox",
+            "none"
+          ],
+          "default": "radio"
+        },
+        "grid": {
+          "type": "number",
+          "multipleOf": 1,
+          "minimum": 1,
+          "maximum": 4
+        },
+        "options": {
+          "$ref": "#/definitions/inputOptions"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string"
+        }
+      }
+    },
+    "i-dropdown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label",
+        "options"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-dropdown"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/definitions/inputOptions"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string"
+        }
+      }
+    },
+    "i-multi-select": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label",
+        "options"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-multi-select"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "use_chips": {
+          "type": "boolean"
+        },
+        "use_search": {
+          "type": "boolean"
+        },
+        "icons": {
+          "type": "string",
+          "enum": [
+            "radio",
+            "checkbox",
+            "none"
+          ],
+          "default": "checkbox"
+        },
+        "grid": {
+          "type": "number",
+          "multipleOf": 1,
+          "minimum": 1,
+          "maximum": 4
+        },
+        "options": {
+          "$ref": "#/definitions/inputOptions"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "i-date": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-date"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string",
+          "format": "date"
+        },
+        "min": {
+          "type": "string",
+          "format": "date"
+        },
+        "max": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "i-time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-time"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string",
+          "format": "time"
+        },
+        "min": {
+          "type": "string",
+          "format": "time"
+        },
+        "max": {
+          "type": "string",
+          "format": "time"
+        }
+      }
+    },
+    "i-datetime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-datetime"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "min": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "max": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "i-location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-location"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "default": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "i-file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-file"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "accept": {
+          "$ref": "#/definitions/inputAccept"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        },
+        "minSize": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxSize": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "i-image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-image"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "accept": {
+          "$ref": "#/definitions/inputAccept"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        }
+      }
+    },
+    "i-video": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-video"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "accept": {
+          "$ref": "#/definitions/inputAccept"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        }
+      }
+    },
+    "i-audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-audio"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "accept": {
+          "$ref": "#/definitions/inputAccept"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        }
+      }
+    },
+    "i-agree": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "const": "i-agree"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "label": {
+          "$ref": "#/definitions/inputLabel"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "$ref": "#/definitions/inputRequired"
+        },
+        "disabled": {
+          "$ref": "#/definitions/inputDisabled"
+        }
+      }
+    },
+    "for": {
+      "type": "object",
+      "required": [
+        "type",
+        "items",
+        "as"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "for"
+        },
+        "name": {
+          "$ref": "#/definitions/inputName"
+        },
+        "array": {
+          "type": "array",
+          "items": {},
+          "canBeParameter": true
+        },
+        "as": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/items"
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/items"
+      }
+    }
+  }
+}

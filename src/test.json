@@ -1,0 +1,30 @@
+{
+  "$schema": "input-schema.json",
+  "items": [
+    {
+      "type": "i-number",
+      "name": "merhaba",
+      "label": "",
+      "multipleOf": 0.1
+    },
+    {
+      "type": "o-location",
+      "lat": 0,
+      "lng": 0
+    },
+    {
+      "type": "o-info-box",
+      "text": "Hello"
+    },
+    {
+      "type": "o-pie-chart",
+      "pie-items": [
+        {
+          "text": "A",
+          "value": 10,
+          "color": "#F00"
+        }
+      ]
+    }
+  ]
+}
